@@ -1,5 +1,6 @@
 {
-  "name": "image-loader",
+  "name": "smartimageloader",
+  "version": "1.0.0",
   "main": "index.js",
   "homepage": "https://github.com/dwnz/image-loader",
   "authors": [
