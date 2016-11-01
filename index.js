@@ -10,6 +10,7 @@ function ImageLoader(grid, imagePath, width, height, swatchColor, onclick, callb
 
     self.img = new Image();
     self.grid = grid;
+    self.callback = callback;
     self.id = _randomId();
 
     self.image = {
@@ -81,6 +82,10 @@ function ImageLoader(grid, imagePath, width, height, swatchColor, onclick, callb
 
         self.img.onload = self.onImageLoad;
         self.img.src = self.image.path;
+
+        if (self.callback) {
+            callback(self);
+        }
     };
 
     /**
