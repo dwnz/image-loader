@@ -81,3 +81,7 @@ When the image has loaded
 ## Example
 
 See [example/index.html](example/index.html)
+
+## Tests
+
+Open [test/test.html](test/test.html) in your browser
