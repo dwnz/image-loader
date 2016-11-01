@@ -1,0 +1,19 @@
+{
+  "name": "smartimageloader",
+  "version": "1.0.1",
+  "description": "``` new ImageLoader(GridID, ImageUrl, Width, Height, PreloadBackgroundHex, OnClick, Callback) ```",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwnz/image-loader.git"
+  },
+  "author": "DWNZ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dwnz/image-loader/issues"
+  },
+  "homepage": "https://github.com/dwnz/image-loader#readme"
+}

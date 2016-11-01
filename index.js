@@ -45,12 +45,12 @@ function ImageLoader(grid, imagePath, width, height, swatchColor, onclick, callb
 
         if (self.image.width > self.image.height) {
             diff = gridWidth / self.image.width;
-            self.display.width = self.image.width * diff;
-            self.display.height = self.image.height * diff;
+            self.display.width = Math.ceil(self.image.width * diff);
+            self.display.height = Math.ceil(self.image.height * diff);
         } else {
-            diff = gridWidth / self.image.height;
-            self.display.width = gridWidth;
-            self.display.height = self.image.height * diff;
+            diff = gridWidth / self.image.width;
+            self.display.width = Math.ceil(gridWidth);
+            self.display.height = Math.ceil(self.image.height * diff);
         }
     };
 

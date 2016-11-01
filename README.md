@@ -80,4 +80,4 @@ When the image has loaded
 
 ## Example
 
-See [test/index.html](test/index.html)
+See [example/index.html](example/index.html)

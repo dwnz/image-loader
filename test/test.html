@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>smartimageloader tests</title>
+    <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="mocha"></div>
+<div style="visibility: hidden">
+    <div id="grid1" style="width: 1300px"></div>
+    <div id="grid2" style="width: 300px"></div>
+    <div id="grid3" style="width: 1300px"></div>
+    <div id="grid4" style="width: 300px"></div>
+    <div id="grid5" style="width: 1000px"></div>
+</div>
+
+<script src="https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"></script>
+<script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+<script src="https://cdn.rawgit.com/Automattic/expect.js/master/index.js"></script>
+
+<script src="../index.js"></script>
+
+<script>mocha.setup('bdd')</script>
+
+<script>
+    describe("when creating an image", function () {
+        it("applies values correctly", function (done) {
+            var imageLoader = new ImageLoader(
+                    'grid1',
+                    'https://images.unsplash.com/photo-1435777940218-be0b632d06db?dpr=1&auto=compress,format&fit=crop&w=1199&h=675&q=80&cs=tinysrgb&crop=',
+                    1199,
+                    675,
+                    '#efefef',
+                    null,
+                    function (item) {
+                        expect(item.image.path).to.be('https://images.unsplash.com/photo-1435777940218-be0b632d06db?dpr=1&auto=compress,format&fit=crop&w=1199&h=675&q=80&cs=tinysrgb&crop=');
+                        expect(item.image.width).to.be(1199);
+                        expect(item.image.height).to.be(675);
+                        expect(item.image.swatch).to.be('#efefef');
+                        expect(item.image.click).to.be(null);
+
+                        expect(item.id).to.not.be(null);
+                        expect(item.img).to.not.be(null);
+                        expect(item.grid).to.not.be(null);
+                        expect(item.callback).to.not.be(null);
+
+                        done();
+                    }
+            );
+        });
+
+        describe('when creating a horizontal image loader', function () {
+            it('should use full width and height when grid is bigger', function (done) {
+                var imageLoader = new ImageLoader(
+                        'grid1',
+                        'https://images.unsplash.com/photo-1435777940218-be0b632d06db?dpr=1&auto=compress,format&fit=crop&w=1199&h=675&q=80&cs=tinysrgb&crop=',
+                        1199,
+                        675,
+                        '#efefef',
+                        null,
+                        function (item) {
+                            expect(item.display.width).to.be(1300);
+                            expect(item.display.height).to.be(732);
+                            done();
+                        }
+                );
+            });
+
+            it('should use resized values when grid is smaller', function (done) {
+                var imageLoader = new ImageLoader(
+                        'grid2',
+                        'https://images.unsplash.com/photo-1435777940218-be0b632d06db?dpr=1&auto=compress,format&fit=crop&w=1199&h=675&q=80&cs=tinysrgb&crop=',
+                        1199,
+                        675,
+                        '#efefef',
+                        null,
+                        function (item) {
+                            expect(item.display.width).to.be(300);
+                            expect(item.display.height).to.be(169);
+                            done();
+                        }
+                );
+            });
+        });
+
+        describe('when creating a vertical image loader', function () {
+            it('should use full width and height when grid is bigger', function (done) {
+                var imageLoader = new ImageLoader(
+                        'grid3',
+                        'https://images.unsplash.com/photo-1435777940218-be0b632d06db?dpr=1&auto=compress,format&fit=crop&w=675&h=1199&q=80&cs=tinysrgb&crop=',
+                        675,
+                        1199,
+                        '#efefef',
+                        null,
+                        function (item) {
+                            expect(item.display.width).to.be(1300);
+                            expect(item.display.height).to.be(2310);
+
+                            done();
+                        }
+                );
+            });
+
+            it('should use resized values when grid is smaller', function (done) {
+                var imageLoader = new ImageLoader(
+                        'grid4',
+                        'https://images.unsplash.com/photo-1435777940218-be0b632d06db?dpr=1&auto=compress,format&fit=crop&w=675&h=1199&q=80&cs=tinysrgb&crop=',
+                        675,
+                        1199,
+                        '#efefef',
+                        null,
+                        function (item) {
+                            expect(item.display.width).to.be(300);
+                            expect(item.display.height).to.be(533);
+                            done();
+                        }
+                );
+            });
+        });
+    });
+
+    describe("when clicking an image", function () {
+        it("should fire click event when attached", function (done) {
+            var imageId = null;
+
+            var imageLoader = new ImageLoader(
+                    'grid5',
+                    'https://images.unsplash.com/photo-1435777940218-be0b632d06db?dpr=1&auto=compress,format&fit=crop&w=675&h=1199&q=80&cs=tinysrgb&crop=',
+                    675,
+                    1199,
+                    '#efefef',
+                    function (image, imageId, event) {
+                        expect(imageId).to.be(imageId);
+                        expect(image).to.not.be(null);
+                        expect(event).to.not.be(null);
+                        done();
+                    },
+                    function (item) {
+                        imageId = item.id;
+                        $('#grid5').find('img').click();
+                    }
+            );
+        });
+    });
+</script>
+
+
+<script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery']);
+    mocha.run();
+</script>
+
+</body>
+</html>
