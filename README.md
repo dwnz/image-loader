@@ -74,4 +74,4 @@ When the image has loaded
 
 ## Example
 
-See [test/index.html]
+See [test/index.html](test/index.html)
