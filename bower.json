@@ -1,0 +1,17 @@
+{
+  "name": "image-loader",
+  "main": "index.js",
+  "homepage": "https://github.com/dwnz/image-loader",
+  "authors": [
+    "Daniel Wylie <daniel@danielwylie.me>"
+  ],
+  "description": "Lazy image loader with auto resizing",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

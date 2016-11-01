@@ -1,0 +1,55 @@
+<html>
+<head>
+    <script src="../index.js"></script>
+
+    <style>
+        #grid {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .imageholder {
+            margin: 20px auto;
+            transition: all 0.5s;
+            position: relative;
+        }
+
+        .imageholder.imageholder--notloaded {
+            top: 20px;
+        }
+
+        .imageholder.imageholder--loaded {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="grid"></div>
+
+<script>
+    var images = [
+        'https://images.unsplash.com/reserve/uvRBqDAfQfaGPJiI6lVS_R0001899.jpg?dpr=1&auto=compress,format&fit=crop&w=1199&h=794&q=80&cs=tinysrgb&crop=',
+        'https://images.unsplash.com/photo-1435777940218-be0b632d06db?dpr=1&auto=compress,format&fit=crop&w=1199&h=675&q=80&cs=tinysrgb&crop=',
+        'https://images.unsplash.com/photo-1464306208223-e0b4495a5553?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=',
+        'https://images.unsplash.com/photo-1468413922365-e3766a17da9e?dpr=1&auto=compress,format&fit=crop&w=1199&h=615&q=80&cs=tinysrgb&crop=',
+        'https://images.unsplash.com/photo-1473684909030-c634818c89d1?dpr=1&auto=compress,format&fit=crop&w=798&h=1200&q=80&cs=tinysrgb&crop='
+    ];
+
+    var loaders = [];
+
+    function Click() {
+        console.log("Click", arguments);
+    }
+
+    for (var i = 0; i < images.length; i++) {
+        if (i === images.length - 1) {
+            loaders.push(new ImageLoader('grid', images[i], 798, 1200, '#efefef', Click));
+        } else {
+            loaders.push(new ImageLoader('grid', images[i], 1024, 768, '#efefef', Click));
+        }
+    }
+
+</script>
+</body>
+</html>
