@@ -71,3 +71,7 @@ When the image hasn't been loaded
 #### .image.image--loaded
 
 When the image has loaded
+
+## Example
+
+See [test/index.html]
