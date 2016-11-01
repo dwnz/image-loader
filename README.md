@@ -4,6 +4,12 @@
 new ImageLoader(GridID, ImageUrl, Width, Height, PreloadBackgroundHex, OnClick, Callback)
 ```
 
+## Installing
+
+```
+bower install smartimageloader --save
+```
+
 ## Arguments
 
 ### GridID
